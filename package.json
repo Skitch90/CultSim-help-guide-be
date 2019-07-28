@@ -1,0 +1,26 @@
+{
+  "name": "cultsim-help-guide-be",
+  "version": "1.0.0",
+  "description": "Back-end for cultist simulator help guide",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alessandro Schio",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "@graphql-inspector/cli": "^1.21.0",
+    "apollo-server": "^2.7.0",
+    "apollo-server-express": "^2.7.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "express": "^4.17.1",
+    "graphql": "^14.4.2",
+    "graphql-import": "^0.7.1",
+    "neo4j-graphql-js": "^2.6.3"
+  }
+}

@@ -1,0 +1,124 @@
+type Verb {
+    name: String!
+}
+
+type Aspect {
+    name: String!
+}
+
+type Follower {
+    name: String!
+    aspects: [Aspect!]! @relation(name: "HAS_ASPECT", direction: OUT)
+}
+
+# Lore
+type Lore {
+    name: String!
+    aspects: [HasAspectLore!]!
+    upgradesTo: UpgradesTo
+    fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
+}
+
+type HasAspectLore @relation(name: "HAS_ASPECT") {
+    from: Lore!
+    to: Aspect!
+    quantity: Int
+}
+
+type UpgradesTo @relation(name: "UPGRADES_TO") {
+    from: Lore!
+    to: Lore!
+    verb: String
+}
+
+
+#Language
+type Language {
+    name: String!
+    requires: Language @relation(name: "REQUIRES", direction: IN)
+}
+
+type RitualIngredient {
+    name: String!
+    types: [String!]!
+    isConsumed: Boolean
+}
+
+type Ritual {
+    name: String!
+    ingredients: [RitualIngredient!]! @relation(name: "HAS_INGREDIENT", direction: OUT)
+}
+
+type Influence {
+    name: String!
+    aspects: [HasAspectInfluence!]!
+    decaysTo: Influence @relation(name: "DECAYS_TO", direction: OUT)
+    fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
+}
+
+type HasAspectInfluence @relation(name: "HAS_ASPECT") {
+    from: Influence!
+    to: Aspect!
+    quantity: Int
+}
+
+type MansusDoor {
+    name: String!
+    options: [MansusDoorOption] @relation(name: "HAS_OPTION", direction: OUT)
+}
+
+type MansusDoorOption {
+    name: String!
+}
+
+type Location {
+    name: String!
+} 
+
+type BookFoundInLocation @relation(name: "FOUND_IN") {
+    from: Book!
+    to: Location!
+    chance: Boolean!
+}
+
+#Book
+type Book {
+    name: String!
+    foundInLocation: BookFoundInLocation! 
+    language: Language @relation(name: "WRITTEN_IN", direction: OUT)
+    studiedIntoLore: [Lore!]! @relation(name: "STUDY_RESULTS_IN", direction: OUT)
+    teachesRitual: Ritual @relation(name: "STUDY_RESULTS_IN", direction: OUT)
+    teachesLanguage: Language @relation(name: "STUDY_RESULTS_IN", direction: OUT)
+    resultsInInfluence: [Influence!]! @relation(name: "STUDY_RESULTS_IN", direction: OUT)
+}
+
+union Entity = Lore | Book
+
+type HowToObtainResult {
+    fromType: String!
+    path: [Entity!]!
+    pathLength: Int!
+}
+
+type AspectQuantity {
+    aspect: String!
+    quantity: Int
+}
+
+type SearchEntity {
+    name: String!
+    label: String!
+    aspects: [AspectQuantity!]!
+}
+
+type Query {
+    entityWithName(name: String!): [SearchEntity!]!
+    howToObtainLore(loreName:String!, fromType: String): Int
+    #aspects: [Aspect]
+    #followers: [Follower]
+}
+
+# type Mutation {
+#     #createAspect(name: String!): Aspect
+#     #createFollower(name: String!): Follower
+# }
