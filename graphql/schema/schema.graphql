@@ -106,13 +106,25 @@ type AspectQuantity {
 }
 
 type SearchEntity {
+    _id: Int!
     name: String!
     label: String!
     aspects: [AspectQuantity!]!
 }
 
+type AspectSearchGroupResult {
+    label: String!
+    entities: [AspectSearchEntity!]!
+}
+
+type AspectSearchEntity {
+    name: String!
+    aspectQuantity: Int
+}
+
 type Query {
     entityWithName(name: String!): [SearchEntity!]!
+    entityWithAspect(aspect: String!): [AspectSearchGroupResult!]!
     howToObtainLore(loreName:String!, fromType: String): Int
     #aspects: [Aspect]
     #followers: [Follower]

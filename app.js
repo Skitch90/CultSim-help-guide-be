@@ -11,7 +11,8 @@ const driver = v1.driver(
     v1.auth.basic(
         process.env.NEO4J_USER || 'neo4j',
         process.env.NEO4J_PASSWORD || 'neo4jTest'
-    )
+    ),
+    { disableLosslessIntegers: true }
 );
 
 const server = new ApolloServer({
