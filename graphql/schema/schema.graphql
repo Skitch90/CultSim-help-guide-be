@@ -36,6 +36,7 @@ type UpgradesTo @relation(name: "UPGRADES_TO") {
 type Language {
     name: String!
     requires: Language @relation(name: "REQUIRES", direction: IN)
+    fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
 }
 
 type RitualIngredient {
