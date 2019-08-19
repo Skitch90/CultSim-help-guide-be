@@ -85,7 +85,7 @@ type BookFoundInLocation @relation(name: "FOUND_IN") {
 #Book
 type Book {
     name: String!
-    foundInLocation: BookFoundInLocation! 
+    foundInLocation: [BookFoundInLocation!]! 
     language: Language @relation(name: "WRITTEN_IN", direction: OUT)
     studiedIntoLore: [Lore!]! @relation(name: "STUDY_RESULTS_IN", direction: OUT)
     teachesRitual: Ritual @relation(name: "STUDY_RESULTS_IN", direction: OUT)
