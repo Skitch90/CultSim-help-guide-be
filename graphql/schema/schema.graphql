@@ -17,6 +17,7 @@ type Lore {
     aspects: [HasAspectLore!]!
     upgradesTo: UpgradesTo
     fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
+    exploreResults: [Location!]! @relation(name: "EXPLORE_RESULTS_IN", direction: OUT)
 }
 
 type HasAspectLore @relation(name: "HAS_ASPECT") {
@@ -35,7 +36,7 @@ type UpgradesTo @relation(name: "UPGRADES_TO") {
 #Language
 type Language {
     name: String!
-    requires: Language @relation(name: "REQUIRES", direction: IN)
+    requires: Language @relation(name: "REQUIRES", direction: OUT)
     fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
 }
 
@@ -50,10 +51,12 @@ type Ritual {
     ingredients: [RitualIngredient!]! @relation(name: "HAS_INGREDIENT", direction: OUT)
 }
 
+#Influence
 type Influence {
     name: String!
     aspects: [HasAspectInfluence!]!
     decaysTo: Influence @relation(name: "DECAYS_TO", direction: OUT)
+    foundInLocation: [InfluenceFoundInLocation!]!
     fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
 }
 
@@ -63,6 +66,13 @@ type HasAspectInfluence @relation(name: "HAS_ASPECT") {
     quantity: Int
 }
 
+type InfluenceFoundInLocation @relation(name: "FOUND_IN") {
+    from: Influence!
+    to: Location!
+    chance: Boolean!
+}
+
+#Mansus
 type MansusDoor {
     name: String!
     options: [MansusDoorOption] @relation(name: "HAS_OPTION", direction: OUT)
@@ -72,15 +82,10 @@ type MansusDoorOption {
     name: String!
 }
 
+#Location
 type Location {
     name: String!
 } 
-
-type BookFoundInLocation @relation(name: "FOUND_IN") {
-    from: Book!
-    to: Location!
-    chance: Boolean!
-}
 
 #Book
 type Book {
@@ -91,6 +96,50 @@ type Book {
     teachesRitual: Ritual @relation(name: "STUDY_RESULTS_IN", direction: OUT)
     teachesLanguage: Language @relation(name: "STUDY_RESULTS_IN", direction: OUT)
     resultsInInfluence: [Influence!]! @relation(name: "STUDY_RESULTS_IN", direction: OUT)
+}
+
+type BookFoundInLocation @relation(name: "FOUND_IN") {
+    from: Book!
+    to: Location!
+    chance: Boolean!
+}
+
+#Tool
+type Tool {
+    name: String!
+    aspects: [ToolHasAspect!]!
+    foundInLocation: [ToolFoundInLocation!]!
+}
+
+type ToolHasAspect @relation(name: "HAS_ASPECT") {
+    from: Tool!
+    to: Aspect!
+    quantity: Int
+}
+
+type ToolFoundInLocation @relation(name: "FOUND_IN") {
+    from: Tool!
+    to: Location!
+    chance: Boolean!
+}
+
+#Ingredient
+type Ingredient {
+    name: String!
+    aspects: [IngredientHasAspect!]!
+    foundInLocation: [IngredientFoundInLocation!]!
+}
+
+type IngredientHasAspect @relation(name: "HAS_ASPECT") {
+    from: Ingredient!
+    to: Aspect!
+    quantity: Int
+}
+
+type IngredientFoundInLocation @relation(name: "FOUND_IN") {
+    from: Ingredient!
+    to: Location!
+    chance: Boolean!
 }
 
 union Entity = Lore | Book
