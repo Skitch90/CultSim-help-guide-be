@@ -171,6 +171,7 @@ type AspectSearchGroupResult {
 
 type AspectSearchEntity {
     name: String!
+    type: String!
     aspectQuantity: Int
 }
 

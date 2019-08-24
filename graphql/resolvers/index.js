@@ -40,6 +40,7 @@ const resolvers = {
                         return {
                             _id: item.id,
                             name: item.name,
+                            type: key,
                             aspectQuantity: item.quantity
                         }
                     })
