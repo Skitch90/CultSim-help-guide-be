@@ -85,6 +85,8 @@ type MansusDoorOption {
 #Location
 type Location {
     name: String!
+    vault: Boolean!
+    histories: [Lore!]! @relation(name: "EXPLORE_RESULTS_IN", direction: IN)
 } 
 
 #Book
