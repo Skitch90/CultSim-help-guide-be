@@ -87,7 +87,20 @@ type Location {
     name: String!
     vault: Boolean!
     histories: [Lore!]! @relation(name: "EXPLORE_RESULTS_IN", direction: IN)
+    obstacles: [ExpeditionObstacle!]! @relation(name: "HAS_OBSTACLE", direction: OUT)
+    bookRewards: [Book!]! @relation(name: "FOUND_IN", direction: IN)
 } 
+
+type Reward {
+    id: Int!
+    label: String!
+    name: String!
+}
+
+type ExpeditionObstacle {
+    name: String!
+    defeatedWith: [Aspect!]! @relation(name: "CAN_BE_DEFEATED_WITH", direction: OUT)
+}
 
 #Book
 type Book {
@@ -179,11 +192,4 @@ type Query {
     entityWithName(name: String!): [SearchEntity!]!
     entityWithAspect(aspect: String!): [AspectSearchGroupResult!]!
     howToObtainLore(loreName:String!, fromType: String): Int
-    #aspects: [Aspect]
-    #followers: [Follower]
 }
-
-# type Mutation {
-#     #createAspect(name: String!): Aspect
-#     #createFollower(name: String!): Follower
-# }
