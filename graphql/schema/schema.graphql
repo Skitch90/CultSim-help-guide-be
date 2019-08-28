@@ -89,6 +89,9 @@ type Location {
     histories: [Lore!]! @relation(name: "EXPLORE_RESULTS_IN", direction: IN)
     obstacles: [ExpeditionObstacle!]! @relation(name: "HAS_OBSTACLE", direction: OUT)
     bookRewards: [Book!]! @relation(name: "FOUND_IN", direction: IN)
+    ingredientRewards: [Ingredient!]! @relation(name: "FOUND_IN", direction: IN)
+    influenceRewards: [Influence!]! @relation(name: "FOUND_IN", direction: IN)
+    toolRewards: [Tool!]! @relation(name: "FOUND_IN", direction: IN)
 } 
 
 type Reward {
