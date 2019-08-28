@@ -146,6 +146,7 @@ type Ingredient {
     name: String!
     aspects: [IngredientHasAspect!]!
     foundInLocation: [IngredientFoundInLocation!]!
+    fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
 }
 
 type IngredientHasAspect @relation(name: "HAS_ASPECT") {
