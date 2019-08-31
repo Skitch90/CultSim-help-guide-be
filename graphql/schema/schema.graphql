@@ -57,7 +57,7 @@ type Influence {
     aspects: [HasAspectInfluence!]!
     decaysTo: Influence @relation(name: "DECAYS_TO", direction: OUT)
     foundInLocation: [InfluenceFoundInLocation!]!
-    fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
+    fromDreamingIn: [MansusDoorOption!]! @relation(name: "CAN_RESULT_IN", direction: IN)
 }
 
 type HasAspectInfluence @relation(name: "HAS_ASPECT") {
@@ -80,6 +80,7 @@ type MansusDoor {
 
 type MansusDoorOption {
     name: String!
+    door: MansusDoor @relation(name: "HAS_OPTION", direction: IN)
 }
 
 #Location
