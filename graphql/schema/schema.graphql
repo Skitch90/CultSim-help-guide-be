@@ -56,8 +56,10 @@ type Influence {
     name: String!
     aspects: [HasAspectInfluence!]!
     decaysTo: Influence @relation(name: "DECAYS_TO", direction: OUT)
+    decaysFrom: [Influence!]! @relation(name: "DECAYS_TO", direction: IN)
     foundInLocation: [InfluenceFoundInLocation!]!
     fromDreamingIn: [MansusDoorOption!]! @relation(name: "CAN_RESULT_IN", direction: IN)
+    fromBook: [Book!]! @relation(name: "STUDY_RESULTS_IN", direction: IN)
 }
 
 type HasAspectInfluence @relation(name: "HAS_ASPECT") {
