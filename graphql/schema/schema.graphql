@@ -77,6 +77,10 @@ type MansusDoor {
 type MansusDoorOption {
     name: String!
     door: MansusDoor @relation(name: "HAS_OPTION", direction: IN)
+    influenceRewards: [Influence!]! @relation(name: "CAN_RESULT_IN", direction: OUT)
+    ingredientRewards: [Ingredient!]! @relation(name: "CAN_RESULT_IN", direction: OUT)
+    languageRewards: [Language!]! @relation(name: "CAN_RESULT_IN", direction: OUT)
+    loreRewards: [Lore!]! @relation(name: "CAN_RESULT_IN", direction: OUT)
 }
 
 #Location
