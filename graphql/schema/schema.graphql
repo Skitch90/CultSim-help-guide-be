@@ -15,7 +15,7 @@ type Follower {
 type Lore {
     name: String!
     aspects: [HasAspectLore!]!
-    upgradesTo: UpgradesTo
+    upgradesTo: Lore @relation(name: "UPGRADES_TO", direction: OUT)
     fromBook: [Book!]! @relation(name: "STUDY_RESULTS_IN", direction: IN)
     fromDreamingIn: [MansusDoorOption!]! @relation(name: "CAN_RESULT_IN", direction: IN)
     exploreResults: [Location!]! @relation(name: "EXPLORE_RESULTS_IN", direction: OUT)
@@ -26,13 +26,6 @@ type HasAspectLore @relation(name: "HAS_ASPECT") {
     to: Aspect!
     quantity: Int
 }
-
-type UpgradesTo @relation(name: "UPGRADES_TO") {
-    from: Lore!
-    to: Lore!
-    verb: String
-}
-
 
 #Language
 type Language {
