@@ -34,15 +34,15 @@ type Language {
     fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
 }
 
-type RitualIngredient {
+type RiteComponent {
     name: String!
     types: [String!]!
     isConsumed: Boolean
 }
 
-type Ritual {
+type Rite {
     name: String!
-    ingredients: [RitualIngredient!]! @relation(name: "HAS_INGREDIENT", direction: OUT)
+    components: [RiteComponent!]! @relation(name: "HAS_COMPONENT", direction: OUT)
 }
 
 #Influence
@@ -112,7 +112,7 @@ type Book {
     foundInLocation: [BookFoundInLocation!]! 
     language: Language @relation(name: "WRITTEN_IN", direction: OUT)
     studiedIntoLore: [Lore!]! @relation(name: "STUDY_RESULTS_IN", direction: OUT)
-    teachesRitual: Ritual @relation(name: "STUDY_RESULTS_IN", direction: OUT)
+    teachesRite: Rite @relation(name: "STUDY_RESULTS_IN", direction: OUT)
     teachesLanguage: Language @relation(name: "STUDY_RESULTS_IN", direction: OUT)
     resultsInInfluence: [Influence!]! @relation(name: "STUDY_RESULTS_IN", direction: OUT)
 }
