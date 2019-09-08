@@ -61,6 +61,24 @@ const resolvers = {
                 pathLength: 1
             };
         }
+    },
+    Mutation: {
+        setLanguageRequires: async (root, args, context) => {
+            const session = context.driver.session();
+            const query = `
+                MATCH (lang:Language {name: $language})
+                MATCH (reqLang:Language {name: $requiredLanguage})
+                CREATE (lang)-[requires:REQUIRES]->(reqLang)
+                RETURN lang.name AS language, reqLang.name AS requiredLanguage
+            `;
+            const queryResult = await session.run(query, args);
+            const record = queryResult.records[0];
+            const resultLanguage = {
+                language: record.get("language"),
+                requiredLanguage: record.get("requiredLanguage")
+            }
+            return resultLanguage;
+        }
     }
 }
 

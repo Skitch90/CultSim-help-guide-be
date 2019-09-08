@@ -193,8 +193,17 @@ type AspectSearchEntity {
     aspectQuantity: Int
 }
 
+type SetLanguageRequiresOut {
+    language: String!
+    requiredLanguage: String!
+}
+
 type Query {
     entityWithName(name: String!): [SearchEntity!]!
     entityWithAspect(aspect: String!): [AspectSearchGroupResult!]!
     howToObtainLore(loreName:String!, fromType: String): Int
+}
+
+type Mutation {
+    setLanguageRequires(language: String!, requiredLanguage: String!): SetLanguageRequiresOut!
 }
