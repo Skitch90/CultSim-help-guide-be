@@ -34,6 +34,7 @@ type Language {
     fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
 }
 
+# Rite
 type RiteComponent {
     name: String!
     types: [String!]!
@@ -43,6 +44,7 @@ type RiteComponent {
 type Rite {
     name: String!
     components: [RiteComponent!]! @relation(name: "HAS_COMPONENT", direction: OUT)
+    fromBook: [Book!]! @relation(name: "STUDY_RESULTS_IN", direction: IN)
 }
 
 #Influence
