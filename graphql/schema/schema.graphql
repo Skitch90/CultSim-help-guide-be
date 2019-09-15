@@ -115,6 +115,7 @@ type Book {
     teachesRite: Rite @relation(name: "STUDY_RESULTS_IN", direction: OUT)
     teachesLanguage: Language @relation(name: "STUDY_RESULTS_IN", direction: OUT)
     resultsInInfluence: [Influence!]! @relation(name: "STUDY_RESULTS_IN", direction: OUT)
+    resultsInTool: Tool @relation(name: "STUDY_RESULTS_IN", direction: OUT)
 }
 
 type BookFoundInLocation @relation(name: "FOUND_IN") {
