@@ -129,6 +129,7 @@ type Tool {
     name: String!
     aspects: [ToolHasAspect!]!
     foundInLocation: [ToolFoundInLocation!]!
+    fromBook: [Book!]! @relation(name: "STUDY_RESULTS_IN", direction: IN)
 }
 
 type ToolHasAspect @relation(name: "HAS_ASPECT") {
