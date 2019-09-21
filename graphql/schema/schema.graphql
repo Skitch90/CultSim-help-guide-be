@@ -31,6 +31,7 @@ type HasAspectLore @relation(name: "HAS_ASPECT") {
 type Language {
     name: String!
     requires: Language @relation(name: "REQUIRES", direction: OUT)
+    fromBook: Book @relation(name: "STUDY_RESULTS_IN", direction: IN)
     fromDreamingIn: MansusDoorOption @relation(name: "CAN_RESULT_IN", direction: IN)
 }
 
