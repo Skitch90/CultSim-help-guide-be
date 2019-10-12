@@ -16,6 +16,7 @@ type Lore {
     name: String!
     aspects: [HasAspectLore!]!
     upgradesTo: Lore @relation(name: "UPGRADES_TO", direction: OUT)
+    upgradesFrom: Lore @relation(name: "UPGRADES_TO", direction: IN)
     fromBook: [Book!]! @relation(name: "STUDY_RESULTS_IN", direction: IN)
     fromDreamingIn: [MansusDoorOption!]! @relation(name: "CAN_RESULT_IN", direction: IN)
     exploreResults: [Location!]! @relation(name: "EXPLORE_RESULTS_IN", direction: OUT)
