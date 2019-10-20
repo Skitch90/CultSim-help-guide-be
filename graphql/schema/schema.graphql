@@ -15,6 +15,7 @@ type Follower {
 type Desire {
     name: String!
     fromDesire: [FromDesire!]!
+    toDesire: [FromDesire!]!
 }
 
 type FromDesire @relation(name: "OBTAINED_FROM") {
