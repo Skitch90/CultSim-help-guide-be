@@ -11,6 +11,19 @@ type Follower {
     aspects: [Aspect!]! @relation(name: "HAS_ASPECT", direction: OUT)
 }
 
+#Desire
+type Desire {
+    name: String!
+    fromDesire: [FromDesire!]!
+}
+
+type FromDesire @relation(name: "OBTAINED_FROM") {
+    from: Desire!
+    to: Desire!
+    ingredient1: String!
+    ingredient2: String
+}
+
 # Lore
 type Lore {
     name: String!
