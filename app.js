@@ -6,8 +6,10 @@ const schema = require('./graphql/schema');
 
 const app = express();
 
+const neo4jUrl = process.env.NEO4J_URI || 'bolt://localhost:7687';
+console.log('Creating neo4j driver to url',  neo4jUrl)
 const driver = v1.driver(
-    process.env.NEO4J_URI || 'bolt://localhost:7687',
+    neo4jUrl,
     v1.auth.basic(
         process.env.NEO4J_USER || 'neo4j',
         process.env.NEO4J_PASSWORD || 'neo4jTest'
