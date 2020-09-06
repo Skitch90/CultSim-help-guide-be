@@ -113,12 +113,6 @@ type Location {
     toolRewards: [Tool!]! @relation(name: "FOUND_IN", direction: IN)
 } 
 
-type Reward {
-    id: Int!
-    label: String!
-    name: String!
-}
-
 type ExpeditionObstacle {
     name: String!
     defeatedWith: [Aspect!]! @relation(name: "CAN_BE_DEFEATED_WITH", direction: OUT)
