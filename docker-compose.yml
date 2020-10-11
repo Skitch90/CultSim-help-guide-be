@@ -19,5 +19,8 @@ services:
     environment: 
       NEO4J_AUTH: neo4j/neo4jTest
       NEO4J_dbms_default__advertised__address: neo4j
+      NEO4J_dbms_security_procedures_unrestricted: apoc.\\\*
+      NEO4J_apoc_export_file_enabled: 'true'
     volumes:
-      - C:\Users\alesc\Desktop\Neo4j\import:/var/lib/neo4j/import    
+      - C:\Users\alesc\Desktop\Neo4j\import:/var/lib/neo4j/import
+      - C:\Users\alesc\Desktop\Neo4j\plugins:/var/lib/neo4j/plugins

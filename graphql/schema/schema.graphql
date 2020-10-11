@@ -25,6 +25,10 @@ type FromDesire @relation(name: "OBTAINED_FROM") {
     ingredient2: String
 }
 
+type ChangeLesson {
+    name: String!
+}
+
 # Lore
 type Lore {
     name: String!
