@@ -182,12 +182,6 @@ type IngredientFoundInLocation @relation(name: "FOUND_IN") {
 
 union Entity = Lore | Book
 
-type HowToObtainResult {
-    fromType: String!
-    path: [Entity!]!
-    pathLength: Int!
-}
-
 type AspectQuantity {
     aspect: String!
     quantity: Int
@@ -219,7 +213,6 @@ type SetLanguageRequiresOut {
 type Query {
     entityWithName(name: String!): [SearchEntity!]!
     entityWithAspect(aspect: String!): [AspectSearchGroupResult!]!
-    howToObtainLore(loreName:String!, fromType: String): Int
 }
 
 type Mutation {
