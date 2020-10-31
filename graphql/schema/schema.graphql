@@ -180,6 +180,11 @@ type IngredientFoundInLocation @relation(name: "FOUND_IN") {
     chance: Boolean!
 }
 
+#Tutor
+type Tutor {
+    name: String!
+}
+
 union Entity = Lore | Book
 
 type AspectQuantity {
